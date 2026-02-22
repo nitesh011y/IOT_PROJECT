@@ -4,9 +4,9 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 
-app.get("/", (req, res) => {
+app.get("/data", (req, res) => {
   console.log("hello");
-  return "hellos";
+  return res.json("dont");
 });
 
 app.listen(process.env.PORT, () => {
