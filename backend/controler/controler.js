@@ -4,11 +4,12 @@ const getData = function (req, res) {
   try {
     const data = req.query;
 
-    if (data == undefined) {
+    if (data == undefined || Object.entries(data).length == 0) {
       return res
         .status(200)
         .json({ success: false, message: "data not found" });
     }
+
     console.log(data);
     res
       .status(200)
