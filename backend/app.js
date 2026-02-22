@@ -1,13 +1,17 @@
 const express = require("express");
 const app = express();
-
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
+cors("*");
 
-app.get("/data", (req, res) => {
-  console.log("hello");
-  return res.json("dont");
-});
+//middleware
+app.use(express.json);
+
+//get routes
+const { getData } = require("./controler/controler.js");
+
+app.get("/data", getData);
 
 app.listen(process.env.PORT, () => {
   console.log("Server running on port");
