@@ -6,7 +6,8 @@ const cors = require("cors");
 cors("*");
 
 //middleware
-app.use(express.json);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //get routes
 const { getData } = require("./controler/controler.js");
@@ -14,5 +15,5 @@ const { getData } = require("./controler/controler.js");
 app.get("/data", getData);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server running on port");
+  console.log("Server running ....");
 });
