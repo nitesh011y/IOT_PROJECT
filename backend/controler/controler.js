@@ -8,6 +8,7 @@ const getData = function (req, res) {
       return res.status(400).json({ success: false });
     }
 
+    //push to db
     const point = new Point("smart_cane")
       .tag("deviceId", deviceId)
       .floatField("distance", Number(distance))
