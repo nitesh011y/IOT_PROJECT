@@ -8,6 +8,16 @@ connectMongo();
 const cors = require("cors");
 cors("*");
 
+//for always service up
+const interval = 300000;
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then(() => console.log("Website pinged to prevent sleep"))
+    .catch((err) => console.log(" Auto-ping error:", err.message));
+}
+setInterval(reloadWebsite, interval);
+
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
