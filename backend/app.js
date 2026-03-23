@@ -18,12 +18,19 @@ function reloadWebsite() {
 }
 setInterval(reloadWebsite, interval);
 
-//middleware
+//cookie setup
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+// Parse incoming data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//get routes
-const { getData } = require("./controler/controler.js");
+//mount routes
+app.use("/api/auth", require("./routes/Auth.js"));
+
+//get data routs
+const { getData } = require("./controler/data_controler.js");
 
 app.get("/data", getData);
 
