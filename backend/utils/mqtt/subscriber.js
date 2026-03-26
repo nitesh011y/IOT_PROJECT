@@ -11,13 +11,7 @@ const TOPICS = [
   "smartcane/#",
 ];
 
-// Store latest state (important)
-// const deviceState = {
-//   distance: null,
-//   water: null,
-//   sos: null,
-//   lastUpdated: null,
-// };
+
 
 let deviceState = {
   topic: null,
@@ -39,34 +33,7 @@ client.on("connect", () => {
   });
 });
 
-// client.on("message", (topic, message) => {
-//   const value = message.toString();
 
-//   console.log(topic);
-//   switch (topic) {
-//     case "smartcane/distance":
-//       deviceState.distance = Number(value);
-//       break;
-
-//     case "smartcane/water":
-//       deviceState.water = Number(value);
-//       break;
-
-//     case "smartcane/sos":
-//       deviceState.sos = value === "1";
-//       break;
-//   }
-
-//   deviceState.lastUpdated = new Date();
-
-//   console.log("DATA RECEIVED");
-//   console.log(deviceState);
-
-//   //  Here you can:
-//   // - Save to MongoDB
-//   // - Save to InfluxDB
-//   // - Trigger alerts
-// });
 
 client.on("message", async (topic, message) => {
   const payload = message.toString();
