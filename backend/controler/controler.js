@@ -3,13 +3,13 @@ const IoTEvent = require("../models/IoTEvent");
 
 const getData = async (req, res) => {
   try {
-    //   // Merge ALL incoming data
-    //   const incomingData = {
-    //     ...req.query,
-    //     ...req.body,
-    //   };
+    // Merge ALL incoming data
+    const incomingData = {
+      ...req.query,
+      ...req.body,
+    };
 
-    //   const deviceId = incomingData.deviceId || "UNKNOWN_DEVICE";
+    const deviceId = incomingData.deviceId || "UNKNOWN_DEVICE";
 
     // /* -------- InfluxDB (Only numeric/time-series) -------- */
     // if (incomingData.distance || incomingData.water || incomingData.sos) {
@@ -31,11 +31,11 @@ const getData = async (req, res) => {
     // }
 
     /* -------- MongoDB (RAW DATA STORAGE) -------- */
-    // await IoTEvent.create({
-    //   deviceId,
-    //   payload: incomingData,
-    //   source: "http-iot",
-    // });
+    await IoTEvent.create({
+      deviceId,
+      payload: incomingData,
+      source: "http-iot",
+    });
 
     let getDB_data = await IoTEvent.find();
 

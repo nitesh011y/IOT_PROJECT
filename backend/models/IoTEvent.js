@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const IoTEventSchema = new mongoose.Schema(
   {
-    deviceId: { type: String, index: true },
+    deviceId: { type: String },
 
     // Store EVERYTHING here
     payload: {
