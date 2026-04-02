@@ -1,4 +1,3 @@
-// const { writeApi, Point } = require("../config/influx");
 const IoTEvent = require("../models/IoTEvent");
 
 const getData = async (req, res) => {
