@@ -1,5 +1,6 @@
-const app = require("../utils/express_boiler.js");
+const router = require("../utils/router_boilder");
 
-const { getData } = require("./controler/data_controler.js");
+const { getData } = require("../controler/data_controler");
 
-app.get("/data", getData);
+router.get("/data", getData);
+module.exports = router;

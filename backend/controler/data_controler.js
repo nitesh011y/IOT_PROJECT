@@ -1,3 +1,4 @@
+// const { writeApi, Point } = require("../config/influx");
 const IoTEvent = require("../models/IoTEvent");
 
 // Get latest 10 records

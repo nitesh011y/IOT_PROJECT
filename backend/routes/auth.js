@@ -5,13 +5,16 @@ const {
   getMe,
 } = require("../controler/Auth_controler");
 
+// ================= REGISTER =================
 router.post("/register", registerUser);
+
+// ================= LOGIN =================
 router.post("/login", loginUser);
 
-// GET current user
+// ================= GET CURRENT USER =================
 router.get("/me", getMe);
 
-// Logout
+// ================= LOGOUT =================
 router.post("/logout", (req, res) => {
   res
     .cookie("token", "", { httpOnly: true, expires: new Date(0) })

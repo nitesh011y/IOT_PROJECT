@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Cane Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Socket.IO (will auto-connect when backend exists) -->
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+  <div class="dashboard">
+    <h1>Smart Cane – Monitoring Dashboard</h1>
+
+    <!-- STATUS CARD -->
+    <div id="statusCard" class="card safe">
+      <h2>Status</h2>
+      <p id="statusText">SAFE</p>
+    </div>
+
+    <!-- SENSOR STATES -->
+    <div class="row">
+      <div class="card">
+        <h3>Obstacle</h3>
+        <p id="obstacle">FAR</p>
+      </div>
+
+      <div class="card">
+        <h3>Water</h3>
+        <p id="water">Not Detected</p>
+      </div>
+
+      <div class="card">
+        <h3>SOS</h3>
+        <p id="sos">Not Pressed</p>
+      </div>
+    </div>
+
+    <!-- LIVE LOG -->
+    <div class="card log">
+      <h3>Live Log</h3>
+      <ul id="logList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

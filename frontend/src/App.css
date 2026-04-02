@@ -1,38 +1,156 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1730, #020816);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* WRAPPER */
+.dashboard-wrapper {
+  padding: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dashboard-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+/* GRID */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.bottom-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+  margin-bottom: 20px;
+}
+
+/* SAFE STATUS */
+.status-safe {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border-radius: 50%;
+  background: #18ff5a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #003b10;
+  box-shadow: 0 0 25px #18ff5a;
+}
+
+/* WATER */
+.water-high {
+  font-size: 38px;
+  color: #ffd166;
+  font-weight: bold;
+}
+
+.value {
+  font-size: 26px;
+}
+
+/* DISTANCE */
+.distance {
+  font-size: 42px;
+  text-align: center;
+}
+
+/* ONLINE */
+.online {
+  color: #1aff6b;
+  font-size: 26px;
+}
+
+/* LOGS */
+.log-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.log-card li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* CONNECTION */
+.device-online {
+  color: #38ff86;
+  font-size: 20px;
+}
+
+.mqtt {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* ===== SOS MODAL ===== */
+
+.sos-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sos-modal {
+  background: linear-gradient(#ff2b2b, #b30000);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  width: 400px;
+  position: relative;
+  box-shadow: 0 0 40px red;
+}
+
+.warning {
+  font-size: 50px;
+}
+
+.sos-modal h2 {
+  margin: 10px 0;
+}
+
+.sos-modal button {
+  margin-top: 20px;
+  padding: 10px 40px;
+  border: none;
+  background: white;
+  color: red;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 20px;
 }
