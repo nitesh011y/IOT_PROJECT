@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { io } from "socket.io-client";
 import "../styles/dashboard.css";
+import Navbar from "./Navbar";
 
 const SOCKET_URL = "http://localhost:5000";
 
@@ -95,6 +96,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-wrapper">
+
       <h1 className="dashboard-title">Smart Cane Monitoring Dashboard</h1>
 
       {/* TOP CARDS */}
