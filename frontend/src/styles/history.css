@@ -1,7 +1,7 @@
 /* ===== BACKGROUND ===== */
 .history-wrapper {
   min-height: 100vh;
-  padding: 50px;
+  padding: 0px 10px;
   background: radial-gradient(circle at top, #02142b, #010814 70%);
   color: white;
   font-family: "Segoe UI", sans-serif;
@@ -128,4 +128,60 @@
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(#00f7ff, #00ff88);
   border-radius: 10px;
+}
+
+/* ===== FILTERS STYLING ===== */
+.filters-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: rgba(10, 20, 40, 0.6);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.filter-input:focus {
+  border-color: #00ffe5;
+  box-shadow: 0 0 8px rgba(0, 255, 229, 0.4);
+}
+
+/* ===== BUTTONS ===== */
+.filter-btn,
+.export-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn {
+  background: #00ffe5;
+  color: #010814;
+}
+
+.filter-btn:hover {
+  background: #00d4b0;
+  box-shadow: 0 0 12px rgba(0, 255, 229, 0.4);
+}
+
+.export-btn {
+  background: #00f7ff;
+  color: #010814;
+}
+
+.export-btn:hover {
+  background: #00d1ff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
 }
