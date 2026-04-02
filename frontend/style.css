@@ -1,0 +1,67 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.dashboard {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+#statusCard {
+  margin-bottom: 20px;
+}
+
+.safe {
+  border-left: 6px solid #22c55e;
+}
+
+.warning {
+  border-left: 6px solid #facc15;
+}
+
+.danger {
+  border-left: 6px solid #ef4444;
+}
+
+.log {
+  text-align: left;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.log ul {
+  list-style: none;
+  padding: 0;
+}
+
+.log li {
+  font-size: 14px;
+  border-bottom: 1px solid #334155;
+  padding: 5px 0;
+}

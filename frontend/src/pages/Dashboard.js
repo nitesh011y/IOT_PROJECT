@@ -1,115 +1,162 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { io } from "socket.io-client";
 import "../styles/dashboard.css";
 
+const SOCKET_URL = "http://localhost:5000";
+
 function Dashboard() {
+  const [userStatus, setUserStatus] = useState("WAITING");
+  const [obstacle, setObstacle] = useState("--");
+  const [water, setWater] = useState("SAFE");
+  const [deviceStatus, setDeviceStatus] = useState("OFFLINE");
+  const [logs, setLogs] = useState([]);
+  const [showSOS, setShowSOS] = useState(false);
 
-  const [showSOS, setShowSOS] = useState(true);
+  // Ref to track socket instance for cleanup
+  const socketRef = useRef(null);
 
-  // fake live logs (replace later with backend data)
-  const logs = [
-    "12:35:08 - User is SAFE",
-    "12:34:55 - Water Level High : 620",
-    "12:34:45 - Distance to Obstacle : 42 cm",
-    "12:34:10 - Device Connected",
-    "12:33:30 - User is SAFE"
-  ];
+  // Map backend values to display & CSS classes
+  const normalizeStatus = (status) => {
+    if (!status) return "waiting";
+    const s = status.toString().toLowerCase();
+    if (["safe", "waiting"].includes(s)) return "safe";
+    if (["warning"].includes(s)) return "warning";
+    if (["danger", "alert"].includes(s)) return "danger";
+    return "safe";
+  };
 
-  // auto popup demo
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSOS(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+  // Add log function - professional format without emojis
+  const addLog = useCallback((message) => {
+    const time = new Date().toLocaleTimeString();
+    const logMessage = `✓ ${time} - ${message}`;
+    setLogs((prev) => {
+      if (prev[0] === logMessage) return prev;
+      return [logMessage, ...prev.slice(0, 20)];
+    });
   }, []);
+
+  // Socket.IO connection - runs only once on mount
+  useEffect(() => {
+    // Create socket connection
+    const socket = io(SOCKET_URL);
+    socketRef.current = socket;
+
+    socket.on("connect", () => {
+      setDeviceStatus("ONLINE");
+      addLog("Device Connected");
+    });
+
+    socket.on("disconnect", () => {
+      setDeviceStatus("OFFLINE");
+      addLog("Device Disconnected");
+    });
+
+    socket.on("dashboard:update", ({ event, state }) => {
+      if (!state) return;
+
+      const user = normalizeStatus(state.userStatus);
+      const obs = state.obstacle ?? "--";
+      const device = state.deviceStatus?.toUpperCase() || "OFFLINE";
+      const waterState = state.water || "SAFE";
+
+      setUserStatus(user);
+      setObstacle(obs);
+      setDeviceStatus(device);
+      setWater(waterState);
+
+      addLog(`User Status: ${user.toUpperCase()}`);
+      addLog(`Water Level: ${waterState}`);
+      addLog(`Obstacle: ${obs}`);
+      addLog(`Device: ${device}`);
+
+      if (state.sos === true && !showSOS) {
+        setShowSOS(true);
+        addLog("SOS Button Pressed");
+        setTimeout(() => setShowSOS(false), 5000);
+      }
+
+      if (event && event.payload) {
+        const payloadStr =
+          typeof event.payload === "string"
+            ? event.payload
+            : JSON.stringify(event.payload);
+        addLog(payloadStr);
+      }
+    });
+
+    // Cleanup on component unmount
+    return () => {
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+        socketRef.current = null;
+      }
+    };
+  }, [addLog]); // Only addLog as dependency (stable), showSOS removed
 
   return (
     <div className="dashboard-wrapper">
+      <h1 className="dashboard-title">Smart Cane Monitoring Dashboard</h1>
 
-      <h1 className="dashboard-title">
-        Smart Cane Monitoring Dashboard
-      </h1>
-
-      {/* ===== STATUS CARDS ===== */}
+      {/* TOP CARDS */}
       <div className="card-grid">
-
         <div className="card">
           <h3>User Status</h3>
-          <div className="status-safe">SAFE</div>
+          <div className={`status ${userStatus}`}>
+            {userStatus.toUpperCase()}
+          </div>
         </div>
 
-        
+        <div className="card">
+          <h3>Water Level</h3>
+          <p className={`value ${water === "DETECTED" ? "danger" : "safe"}`}>
+            {water.toUpperCase()}
+          </p>
+        </div>
 
         <div className="card">
           <h3>Distance to Obstacle</h3>
-          <p className="distance">42 cm</p>
+          <p className="value">{obstacle}</p>
         </div>
 
         <div className="card">
           <h3>Device Status</h3>
-          <p className="online">
-            ● ONLINE
+          <p className={`device ${deviceStatus.toLowerCase()}`}>
+            {deviceStatus === "ONLINE" ? "● ONLINE" : "● OFFLINE"}
           </p>
         </div>
-
       </div>
 
-      {/* ===== LOWER SECTION ===== */}
+      {/* BOTTOM CARDS */}
       <div className="bottom-grid">
-
-        {/* LOG FEED */}
         <div className="card log-card">
           <h3>Live Log Feed</h3>
-
           <ul>
             {logs.map((log, index) => (
-              <li key={index}>✔ {log}</li>
+              <li key={index}>{log}</li>
             ))}
           </ul>
         </div>
 
-        {/* CONNECTION */}
-        <div className="card connection-card">
+        {/* <div className="card connection-card">
           <h3>Connection Status</h3>
-
-          <p className="device-online">
-            📶 Device Online
+          <p>
+            {deviceStatus === "ONLINE" ? "Device Online" : "Device Offline"}
           </p>
-
-          <p className="mqtt">
-            ✅ MQTT Connected
-          </p>
-        </div>
-
+        </div> */}
       </div>
 
-      {/* ===== SOS POPUP ===== */}
+      {/* SOS Notification (slide from right) */}
       {showSOS && (
-        <div className="sos-overlay">
-          <div className="sos-modal">
-
-            <span
-              className="close"
-              onClick={() => setShowSOS(false)}
-            >
-              ✕
-            </span>
-
-            <div className="warning">⚠</div>
-
-            <h2>EMERGENCY SOS ALERT!</h2>
-            <p>SOS Button Pressed!</p>
-
-            <button
-              onClick={() => setShowSOS(false)}
-            >
-              OK
-            </button>
-
+        <div className="sos-slide">
+          <div className="sos-content">
+            <div className="warning-icon">!</div>
+            <div>
+              <h4>EMERGENCY SOS ALERT</h4>
+              <p>SOS Button Pressed</p>
+            </div>
           </div>
         </div>
       )}
-
     </div>
   );
 }
