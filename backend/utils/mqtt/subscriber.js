@@ -1,29 +1,10 @@
 const mqtt = require("mqtt");
+const IoTEvent = require("../../models/IoTEvent");
+const { updateState, getState } = require("../../controler/monitor_dashboard");
+const { getIO } = require("../../socket");
 
 const BROKER_URL = "mqtt://test.mosquitto.org:1883";
-const IoTEvent = require("../../models/IoTEvent");
-
-// Use SAME topics as ESP8266
-const TOPICS = [
-  // "smartcane/distance",
-  // "smartcane/water",
-  // "smartcane/sos",
-  "smartcane/#",
-];
-
-// Store latest state (important)
-// const deviceState = {
-//   distance: null,
-//   water: null,
-//   sos: null,
-//   lastUpdated: null,
-// };
-
-let deviceState = {
-  topic: null,
-  payload: null,
-  receivedAt: null,
-};
+const TOPICS = ["smartcane/#"];
 
 const client = mqtt.connect(BROKER_URL);
 
@@ -31,63 +12,49 @@ client.on("connect", () => {
   console.log(" MQTT Connected to mosquitto");
 
   client.subscribe(TOPICS, (err) => {
-    if (err) {
-      console.error(" Subscription error:", err);
-    } else {
-      console.log(" Subscribed to topics:", TOPICS);
-    }
+    if (err) console.error(" Subscription error:", err);
+    else console.log(" Subscribed to topics:", TOPICS);
   });
 });
 
-// client.on("message", (topic, message) => {
-//   const value = message.toString();
-
-//   console.log(topic);
-//   switch (topic) {
-//     case "smartcane/distance":
-//       deviceState.distance = Number(value);
-//       break;
-
-//     case "smartcane/water":
-//       deviceState.water = Number(value);
-//       break;
-
-//     case "smartcane/sos":
-//       deviceState.sos = value === "1";
-//       break;
-//   }
-
-//   deviceState.lastUpdated = new Date();
-
-//   console.log("DATA RECEIVED");
-//   console.log(deviceState);
-
-//   //  Here you can:
-//   // - Save to MongoDB
-//   // - Save to InfluxDB
-//   // - Trigger alerts
-// });
-
 client.on("message", async (topic, message) => {
-  const payload = message.toString();
-  deviceState = {
-    topic,
-    payload,
-    receivedAt: new Date(),
-  };
+  try {
+    const payload = message.toString();
 
-  if (deviceState.payload) {
+    const event = {
+      topic,
+      payload,
+      receivedAt: new Date(),
+    };
+
+    //  Update in-memory state (REAL-TIME)
+    updateState(payload);
+
+    // Emit to dashboard instantly
+    getIO().emit("dashboard:update", {
+      event,
+      state: getState(),
+    });
+
+    //  Store event for history (NOT real-time)
     await IoTEvent.create({
-      payload: deviceState,
+      deviceId: "smartcane-001",
+      payload: {
+        topic,
+        value: payload,
+        receivedAt: event.receivedAt,
+      },
       source: "smartcane",
     });
-  }
 
-  console.log(deviceState);
+    console.log(" Real-time event sent:", payload);
+  } catch (err) {
+    console.error(" Message handling error:", err);
+  }
 });
 
 client.on("error", (err) => {
   console.error(" MQTT Error:", err);
 });
 
-module.exports = deviceState;
+module.exports = client;
