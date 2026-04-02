@@ -28,7 +28,7 @@ require("./utils/mqtt/subscriber.js");
 // Routes
 app.use("/api/auth", require("./routes/auth.js"));
 
-app.use("/api/data", require("./routes/data.js"));
+app.use("/api/history_data", require("./routes/history.js"));
 
 // Start server
 server.listen(process.env.PORT || 3000, () => {
