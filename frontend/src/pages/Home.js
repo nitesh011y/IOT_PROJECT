@@ -1,5 +1,6 @@
 import "./../styles/home.css";
 import { useState } from "react";
+import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -12,55 +13,8 @@ const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className="home-wrapper">
+      <Navbar/>
 
-      {/* ===== NAVBAR ===== */}
-      <nav className="navbar"> 
-
-        <div className="logo">
-          SmartCane
-        </div>
-
-        <div className="nav-links">
-
-  <button
-    className="nav-btn"
-    onClick={() => navigate("/dashboard")}
-  >
-    Dashboard
-  </button>
-
-    <button className="nav-btn">Notifications</button>
-
-
-</div>
-
-        <div className="user-section">
-
-  <div
-    className="user-icon"
-    onClick={() => setShowMenu(!showMenu)}
-  >
-    {storedUser?.name?.charAt(0).toUpperCase() || "U"}
-  </div>
-
-  {showMenu && (
-    <div className="user-dropdown">
-      <p>{storedUser?.name}</p>
-
-      <button
-        onClick={() => {
-          localStorage.removeItem("user");
-          navigate("/");
-        }}
-      >
-        Logout
-      </button>
-    </div>
-  )}
-
-</div>
-
-      </nav>
 
 
       {/* ===== HOME CONTENT ===== */}

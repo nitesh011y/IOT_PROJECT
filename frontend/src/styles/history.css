@@ -1,0 +1,131 @@
+/* ===== BACKGROUND ===== */
+.history-wrapper {
+  min-height: 100vh;
+  padding: 50px;
+  background: radial-gradient(circle at top, #02142b, #010814 70%);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== TITLE ===== */
+.history-title {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 35px;
+  font-weight: 700;
+
+  background: linear-gradient(90deg, #00f7ff, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 25px rgba(0, 255, 200, 0.6);
+}
+
+/* ===== GLASS CARD ===== */
+.history-table-container {
+  background: rgba(10, 20, 40, 0.55);
+  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  padding: 30px;
+
+  border: 1px solid rgba(0, 255, 255, 0.15);
+
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.12),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+/* ===== TABLE ===== */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ===== HEADER ===== */
+.history-table thead tr {
+  background: rgba(0, 255, 255, 0.05);
+}
+
+.history-table th {
+  padding: 18px;
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+
+  color: #00ffe5;
+
+  text-shadow:
+    0 0 6px #00ffe5,
+    0 0 12px #00ffe5;
+
+  border-bottom: 2px solid rgba(0, 255, 229, 0.3);
+}
+
+/* ===== ROWS ===== */
+.history-table td {
+  padding: 16px;
+  color: #cbd5e1;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== ROW HOVER ===== */
+.history-table tbody tr {
+  transition: all 0.35s ease;
+}
+
+.history-table tbody tr:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.08),
+    rgba(0, 255, 150, 0.05)
+  );
+
+  transform: translateX(8px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+}
+
+/* ===== TIME COLUMN ===== */
+.log-time {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* ===== STATUS BADGES ===== */
+.log-activity {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+/* SAFE */
+.safe {
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.12);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* WARNING */
+.warning {
+  color: #ffd166;
+  background: rgba(255, 209, 102, 0.15);
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.4);
+}
+
+/* ALERT */
+.alert {
+  color: #ff4d6d;
+  background: rgba(255, 77, 109, 0.15);
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00f7ff, #00ff88);
+  border-radius: 10px;
+}

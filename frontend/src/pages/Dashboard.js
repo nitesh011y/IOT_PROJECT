@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/dashboard.css";
+import Navbar from "./Navbar";
 
 function Dashboard() {
 
@@ -25,6 +26,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-wrapper">
+        <Navbar/>
 
       <h1 className="dashboard-title">
         Smart Cane Monitoring Dashboard
