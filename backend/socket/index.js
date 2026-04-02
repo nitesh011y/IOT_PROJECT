@@ -1,18 +1,26 @@
-let io = null;
+const { Server } = require("socket.io");
 
-function initSocket(server) {
-  io = require("socket.io")(server, {
+let io;
+
+const initSocket = (server) => {
+  io = new Server(server, {
     cors: { origin: "*" },
   });
 
-  io.on("connection", (socket) => {
-    console.log(" Dashboard connected:", socket.id);
-  });
-}
+  console.log(" Socket.IO initialized");
 
-function getIO() {
-  if (!io) throw new Error("Socket.io not initialized");
+  io.on("connection", (socket) => {
+    console.log("Frontend connected:", socket.id);
+
+    socket.on("disconnect", () => {
+      console.log("Frontend disconnected:", socket.id);
+    });
+  });
+};
+
+const getIO = () => {
+  if (!io) throw new Error("Socket not initialized");
   return io;
-}
+};
 
 module.exports = { initSocket, getIO };

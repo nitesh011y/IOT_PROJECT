@@ -1,4 +1,4 @@
-const { writeApi, Point } = require("../config/influx");
+// const { writeApi, Point } = require("../config/influx");
 const IoTEvent = require("../models/IoTEvent");
 
 const getData = async (req, res) => {
@@ -7,7 +7,7 @@ const getData = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Data stored in mongo",
+      message: "Data fetch successfully",
       data: getDB_data,
     });
   } catch (err) {
