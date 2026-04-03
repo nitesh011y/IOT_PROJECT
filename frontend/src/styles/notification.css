@@ -1,0 +1,110 @@
+/* 🔔 Bell Icon */
+.notification-bell {
+  position: fixed;
+  top: 80px;
+  right: 25px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 3px 7px;
+}
+
+/* Sidebar */
+.notification-sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 350px;
+  height: 100vh;
+  background: #0b1220;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+  transition: 0.4s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-sidebar.open {
+  right: 0;
+}
+
+/* Header */
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-bottom: 1px solid #2a3550;
+  color: white;
+}
+/* Close (X) Button */
+.notification-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;     /* smaller icon */
+  cursor: pointer;
+  padding: 4px 8px;    /* reduce size */
+  width: auto;
+  height: auto;
+  line-height: 1;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+.notification-header button:hover {
+  background: rgba(255,255,255,0.1);
+}
+/* List */
+.notification-list {
+  overflow-y: auto;
+  padding: 15px;
+}
+
+/* Card */
+.notification-card {
+  background: #18233b;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  color: white;
+  animation: fadeIn 0.3s ease;
+}
+
+.notification-card span {
+  font-size: 12px;
+  color: #9aa4c0;
+}
+
+/* Empty */
+.empty {
+  color: #aaa;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* SOS Test Button */
+.sos-test {
+  margin-top: 15px;
+  background: crimson;
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+} 
