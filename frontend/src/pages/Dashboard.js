@@ -96,7 +96,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard-wrapper">
-
       <h1 className="dashboard-title">Smart Cane Monitoring Dashboard</h1>
 
       {/* TOP CARDS */}
@@ -148,7 +147,7 @@ function Dashboard() {
       </div>
 
       {/* SOS Notification (slide from right) */}
-      {showSOS && (
+      {/* {showSOS && (
         <div className="sos-slide">
           <div className="sos-content">
             <div className="warning-icon">!</div>
@@ -158,7 +157,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

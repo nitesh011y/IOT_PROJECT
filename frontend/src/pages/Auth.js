@@ -20,13 +20,10 @@ function Auth() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email: loginEmail,
-          password: loginPassword,
-        }
-      );
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email: loginEmail,
+        password: loginPassword,
+      });
 
       /*
         EXPECTED BACKEND RESPONSE:
@@ -38,10 +35,7 @@ function Auth() {
       */
 
       // ✅ SAVE ONLY USER OBJECT
-      localStorage.setItem(
-        "user",
-        JSON.stringify(res.data.user)
-      );
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       // optional token save
       if (res.data.token) {
@@ -52,12 +46,8 @@ function Auth() {
 
       // redirect
       navigate("/home");
-
     } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Invalid Email or Password ❌"
-      );
+      alert(err.response?.data?.message || "Invalid Email or Password ❌");
     }
   };
 
@@ -66,10 +56,11 @@ function Auth() {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/auth/register",
-        { name, email, password }
-      );
+      await axios.post("http://localhost:5000/api/auth/register", {
+        name,
+        email,
+        password,
+      });
 
       alert("Account Created ✅ Please Login");
 
@@ -77,25 +68,17 @@ function Auth() {
       setName("");
       setEmail("");
       setPassword("");
-
     } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Registration Failed ❌"
-      );
+      alert(err.response?.data?.message || "Registration Failed ❌");
     }
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
-
-        <h2 className="auth-title">
-          System Access & Registration
-        </h2>
+        <h2 className="auth-title">System Access & Registration</h2>
 
         <div className="auth-grid">
-
           {/* LOGIN */}
           <div className="auth-section">
             <h3>Login</h3>
@@ -118,14 +101,10 @@ function Auth() {
                 required
               />
 
-              <button className="auth-btn">
-                LOG IN
-              </button>
+              <button className="auth-btn">LOG IN</button>
             </form>
 
-            <div className="auth-small">
-              Forgot Password?
-            </div>
+            <div className="auth-small">Forgot Password?</div>
           </div>
 
           {/* REGISTER */}
@@ -157,13 +136,9 @@ function Auth() {
                 required
               />
 
-              <button className="auth-btn">
-                CREATE ACCOUNT
-              </button>
+              <button className="auth-btn">CREATE ACCOUNT</button>
             </form>
-
           </div>
-
         </div>
       </div>
     </div>

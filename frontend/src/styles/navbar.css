@@ -7,7 +7,7 @@
   font-weight: 600;
   color: #00eaff;
   background: #020b1f;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* ===== NAVBAR ===== */
@@ -18,7 +18,7 @@
 
   padding: 14px 40px;
   background: #07152d;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* LOGO */
@@ -73,7 +73,7 @@
   border-radius: 8px;
   width: 150px;
   text-align: center;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .user-dropdown button {

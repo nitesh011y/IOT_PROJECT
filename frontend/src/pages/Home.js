@@ -4,29 +4,25 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-
   // get logged user
   const navigate = useNavigate();
 
-const storedUser = JSON.parse(localStorage.getItem("user"));
-const [showMenu, setShowMenu] = useState(false);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className="home-wrapper">
-      <Navbar/>
-
-
+      <Navbar />
 
       {/* ===== HOME CONTENT ===== */}
       <div className="home-content">
-
         <h1>Smart Cane Detection System</h1>
 
         <p>
           The Smart Cane is an IoT-based assistive device designed to help
-          visually impaired individuals navigate safely and independently.
-          Using advanced sensors and real-time alerts, the system detects
-          nearby obstacles, water puddles, and emergency situations.
+          visually impaired individuals navigate safely and independently. Using
+          advanced sensors and real-time alerts, the system detects nearby
+          obstacles, water puddles, and emergency situations.
         </p>
 
         <p>
@@ -37,7 +33,6 @@ const [showMenu, setShowMenu] = useState(false);
         </p>
 
         <div className="features">
-
           <div className="feature-card">
             <h3>Obstacle Detection</h3>
             <p>
@@ -49,8 +44,8 @@ const [showMenu, setShowMenu] = useState(false);
           <div className="feature-card">
             <h3>Water Detection</h3>
             <p>
-              Identifies wet surfaces or puddles to prevent slips and
-              improve outdoor safety.
+              Identifies wet surfaces or puddles to prevent slips and improve
+              outdoor safety.
             </p>
           </div>
 
@@ -61,11 +56,8 @@ const [showMenu, setShowMenu] = useState(false);
               assistance is required.
             </p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }

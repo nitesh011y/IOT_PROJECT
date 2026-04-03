@@ -1,140 +1,140 @@
 /* FULL PAGE */
-.home-wrapper{
-  min-height:100vh;
-  background:#0b0f1a;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
+.home-wrapper {
+  min-height: 100vh;
+  background: #0b0f1a;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 40px;
-  background:#111827;
-  border-bottom:1px solid #1f2937;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #111827;
+  border-bottom: 1px solid #1f2937;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#c7ff3c;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #c7ff3c;
 }
 
 /* NAV LINKS */
-.nav-links{
-  display:flex;
-  gap:20px;
+.nav-links {
+  display: flex;
+  gap: 20px;
 }
 
-.nav-btn{
-  background:transparent;
-  border:none;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.nav-btn:hover{
-  color:#c7ff3c;
+.nav-btn:hover {
+  color: #c7ff3c;
 }
 
 /* USER */
-.user-section{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.user-icon{
-  background:#c7ff3c;
-  color:black;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
+.user-icon {
+  background: #c7ff3c;
+  color: black;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
 }
 
-.username{
-  font-size:14px;
+.username {
+  font-size: 14px;
 }
 
 /* CONTENT */
-.home-content{
-  max-width:1000px;
-  margin:auto;
-  padding:60px 20px;
-  text-align:center;
+.home-content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.home-content h1{
-  font-size:40px;
-  margin-bottom:20px;
+.home-content h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
-.home-content p{
-  color:#cbd5e1;
-  line-height:1.7;
-  margin-bottom:20px;
+.home-content p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 20px;
 }
 
 /* FEATURES */
-.features{
-  margin-top:40px;
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
+.features {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.feature-card{
-  background:#111827;
-  padding:25px;
-  width:280px;
-  border-radius:12px;
-  border:1px solid #1f2937;
-  transition:0.3s;
+.feature-card {
+  background: #111827;
+  padding: 25px;
+  width: 280px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  transition: 0.3s;
 }
 
-.feature-card:hover{
-  transform:translateY(-5px);
-  border-color:#c7ff3c;
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #c7ff3c;
 }
 /* USER DROPDOWN */
-.user-section{
-  position:relative;
-  cursor:pointer;
+.user-section {
+  position: relative;
+  cursor: pointer;
 }
 
-.user-dropdown{
-  position:absolute;
-  right:0;
-  top:50px;
-  background:#111827;
-  border:1px solid #1f2937;
-  padding:15px;
-  border-radius:10px;
-  width:150px;
-  text-align:center;
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  padding: 15px;
+  border-radius: 10px;
+  width: 150px;
+  text-align: center;
 }
 
-.user-dropdown p{
-  margin-bottom:10px;
-  font-size:14px;
+.user-dropdown p {
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
-.user-dropdown button{
-  width:100%;
-  padding:8px;
-  border:none;
-  background:#c7ff3c;
-  color:black;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
+.user-dropdown button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: #c7ff3c;
+  color: black;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
