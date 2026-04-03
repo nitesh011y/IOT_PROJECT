@@ -2,7 +2,7 @@ const mqtt = require("mqtt");
 const IoTEvent = require("../../models/IoTEvent");
 const Stats = require("../../models/Stats.model");
 
-const { send_mail } = require("../../mail_services/mail");
+// const { send_mail } = require("../../mail_services/mail");
 
 const { updateState, getState } = require("../../controler/monitor_dashboard");
 const { getIO } = require("../../socket");
