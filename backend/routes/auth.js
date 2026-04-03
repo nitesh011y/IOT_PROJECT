@@ -21,5 +21,3 @@ router.get("/me", getMe);
 router.post("/logout", logoutUser);
 
 module.exports = router;
-
-module.exports = router;
