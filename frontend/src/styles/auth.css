@@ -3,13 +3,13 @@ body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #0f172a, #020617);
-  height: 100vh;
+  min-height: 100vh;
   color: white;
 }
 
-/* Center page */
+/* ===== Center Wrapper ===== */
 .auth-wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,88 +17,90 @@ body {
 
 /* ===== Glass Card ===== */
 .auth-card {
-  width: 900px;
-  padding: 40px;
-  border-radius: 20px;
+  width: 420px;
+  padding: 40px 35px;
+  border-radius: 18px;
 
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 45px rgba(0, 0, 0, 0.65);
 }
 
-/* Title */
+/* ===== Title ===== */
 .auth-title {
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 30px;
+  font-size: 26px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
 }
 
-/* Two column layout */
-.auth-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+/* ===== Section ===== */
+.auth-section {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Divider line */
-.auth-grid > div:first-child {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  padding-right: 30px;
-}
-
-/* Section headings */
-.auth-section h3 {
-  margin-bottom: 5px;
-}
-
-.auth-section p {
-  font-size: 13px;
-  color: #aaa;
-  margin-bottom: 15px;
-}
-
-/* Inputs */
+/* ===== Inputs ===== */
 .auth-section input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
   border-radius: 8px;
+
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
   color: white;
   outline: none;
+
   transition: 0.3s;
+}
+
+.auth-section input::placeholder {
+  color: #aaa;
 }
 
 .auth-section input:focus {
   border-color: #c7f464;
-  box-shadow: 0 0 10px #c7f46455;
+  box-shadow: 0 0 10px #c7f46466;
 }
 
-/* Buttons */
+/* ===== Button ===== */
 .auth-btn {
   width: 100%;
   padding: 12px;
-  border: none;
   border-radius: 8px;
+  border: none;
+
   background: #c7f464;
   color: black;
   font-weight: bold;
+  letter-spacing: 1px;
+
   cursor: pointer;
   transition: 0.3s;
 }
 
 .auth-btn:hover {
-  background: #b5e84d;
+  background: #b4e94b;
   transform: translateY(-2px);
 }
 
-/* Small text */
+/* ===== Bottom Text ===== */
 .auth-small {
   text-align: center;
   font-size: 13px;
-  margin-top: 15px;
+  margin-top: 18px;
   color: #bbb;
+}
+
+.auth-small a {
+  color: #c7f464;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-small a:hover {
+  text-decoration: underline;
 }
