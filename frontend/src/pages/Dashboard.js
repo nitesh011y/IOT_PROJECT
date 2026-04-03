@@ -139,27 +139,7 @@ function Dashboard() {
             ))}
           </ul>
         </div>
-
-        {/* <div className="card connection-card">
-          <h3>Connection Status</h3>
-          <p>
-            {deviceStatus === "ONLINE" ? "Device Online" : "Device Offline"}
-          </p>
-        </div> */}
       </div>
-
-      {/* SOS Notification (slide from right) */}
-      {/* {showSOS && (
-        <div className="sos-slide">
-          <div className="sos-content">
-            <div className="warning-icon">!</div>
-            <div>
-              <h4>EMERGENCY SOS ALERT</h4>
-              <p>SOS Button Pressed</p>
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

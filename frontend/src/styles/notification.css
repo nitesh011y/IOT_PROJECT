@@ -27,7 +27,7 @@
   width: 350px;
   height: 100vh;
   background: #0b1220;
-  box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
   transition: 0.4s ease;
   z-index: 999;
   display: flex;
@@ -52,9 +52,9 @@
   background: transparent;
   border: none;
   color: white;
-  font-size: 18px;     /* smaller icon */
+  font-size: 18px; /* smaller icon */
   cursor: pointer;
-  padding: 4px 8px;    /* reduce size */
+  padding: 4px 8px; /* reduce size */
   width: auto;
   height: auto;
   line-height: 1;
@@ -63,7 +63,7 @@
 }
 
 .notification-header button:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 /* List */
 .notification-list {
@@ -105,6 +105,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px);}
-  to { opacity: 1; transform: translateY(0);}
-} 
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

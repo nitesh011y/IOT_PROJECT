@@ -1,24 +1,12 @@
-/* ===== TOP HEADING ===== */
-.top-heading {
-  width: 100%;
-  text-align: center;
-  padding: 12px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #00eaff;
-  background: #020b1f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 14px 40px;
   background: #07152d;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
 }
 
 /* LOGO */
@@ -85,4 +73,40 @@
   color: black;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== MOBILE VIEW ===== */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: #07152d;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }
