@@ -58,7 +58,7 @@ client.on("message", async (topic, message) => {
       source: "smartcane",
     });
 
-    console.log(" Real-time event sent:", payload);
+    //console.log(" Real-time event sent:", payload);
   } catch (err) {
     console.error(" Message handling error:", err);
   }
