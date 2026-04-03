@@ -3,7 +3,8 @@ import { io } from "socket.io-client";
 import "../styles/dashboard.css";
 import Navbar from "./Navbar";
 
-const SOCKET_URL = "http://localhost:5000";
+const url = import.meta.process.env.VITE_API_BASE_URL;
+const SOCKET_URL = url;
 
 function Dashboard() {
   const [userStatus, setUserStatus] = useState("WAITING");

@@ -24,6 +24,8 @@ ChartJS.register(
   Legend,
 );
 
+const url = import.meta.process.env.VITE_API_BASE_URL;
+
 function Analytics() {
   const [summary, setSummary] = useState(null);
   const [sosStats, setSosStats] = useState([]);
@@ -37,10 +39,10 @@ function Analytics() {
   const fetchData = async () => {
     try {
       const [summaryRes, sosRes, waterRes, obstacleRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/stats/summary"),
-        axios.get("http://localhost:5000/api/stats/sos-stats"),
-        axios.get("http://localhost:5000/api/stats/water-stats"),
-        axios.get("http://localhost:5000/api/stats/obstacle-stats"),
+        axios.get(`${url}/api/stats/summary`),
+        axios.get(`${url}/api/stats/sos-stats`),
+        axios.get(`${url}/api/stats/water-stats`),
+        axios.get(`${url}/api/stats/obstacle-stats`),
       ]);
 
       setSummary(summaryRes.data);

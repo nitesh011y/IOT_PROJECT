@@ -4,8 +4,9 @@ import io from "socket.io-client";
 import "../styles/home.css";
 import "../styles/notification.css";
 import Navbar from "./Navbar";
+const url = import.meta.process.env.VITE_API_BASE_URL;
 
-const SOCKET_URL = "http://localhost:5000";
+const SOCKET_URL = url;
 const SOS_COOLDOWN_MS = 10000; // 10 seconds – adjust as needed
 
 const Home = () => {

@@ -5,7 +5,6 @@ import "../styles/navbar.css";
 function Navbar() {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [showNavLinks, setShowNavLinks] = useState(false);
 
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
@@ -15,61 +14,46 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      {/* LEFT */}
-      <div className="logo">SmartCane</div>
+    <>
+      {/* ===== NAVBAR ===== */}
+      <nav className="navbar">
+        {/* LEFT LOGO */}
+        <div className="logo">SmartCane</div>
 
-      {/* HAMBURGER (MOBILE) */}
-      <div className="hamburger" onClick={() => setShowNavLinks(!showNavLinks)}>
-        ☰
-      </div>
+        {/* CENTER LINKS */}
+        <div className="nav-links">
+          <Link to="/home" className="nav-link">
+            Home
+          </Link>
 
-      {/* CENTER LINKS */}
-      <div className={`nav-links ${showNavLinks ? "active" : ""}`}>
-        <Link
-          to="/home"
-          className="nav-link"
-          onClick={() => setShowNavLinks(false)}
-        >
-          Home
-        </Link>
-        <Link
-          to="/dashboard"
-          className="nav-link"
-          onClick={() => setShowNavLinks(false)}
-        >
-          Dashboard
-        </Link>
-        <Link
-          to="/history"
-          className="nav-link"
-          onClick={() => setShowNavLinks(false)}
-        >
-          History
-        </Link>
-        <Link
-          to="/analytics"
-          className="nav-link"
-          onClick={() => setShowNavLinks(false)}
-        >
-          Analytics
-        </Link>
-      </div>
+          <Link to="/dashboard" className="nav-link">
+            Dashboard
+          </Link>
 
-      {/* RIGHT USER */}
-      <div className="user-section">
-        <div className="user-icon" onClick={() => setShowMenu(!showMenu)}>
-          {storedUser?.name?.charAt(0).toUpperCase() || "U"}
+          <Link to="/history" className="nav-link">
+            History
+          </Link>
+
+          <Link to="/analytics" className="nav-link">
+            Analytics
+          </Link>
         </div>
 
-        {showMenu && (
-          <div className="user-dropdown">
-            <p>{storedUser?.name}</p>
-            <button onClick={handleLogout}>Logout</button>
+        {/* RIGHT USER */}
+        <div className="user-section">
+          <div className="user-icon" onClick={() => setShowMenu(!showMenu)}>
+            {storedUser?.name?.charAt(0).toUpperCase() || "U"}
           </div>
-        )}
-      </div>
-    </nav>
+
+          {showMenu && (
+            <div className="user-dropdown">
+              <p>{storedUser?.name}</p>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+        </div>
+      </nav>
+    </>
   );
 }
 

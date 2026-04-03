@@ -3,6 +3,8 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import "./../styles/history.css";
 
+const url = import.meta.process.env.VITE_API_BASE_URL;
+
 function History() {
   const [logs, setLogs] = useState([]);
   const [fromDate, setFromDate] = useState("");
@@ -14,7 +16,7 @@ function History() {
   const fetchLogs = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/history_data", {
+      const res = await axios.get(`${url}/api/history_data`, {
         params: { from: fromDate, to: toDate, limit },
       });
 
@@ -36,13 +38,10 @@ function History() {
   // Export CSV
   const exportCSV = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/history_data/export",
-        {
-          params: { from: fromDate, to: toDate, limit },
-          responseType: "blob",
-        },
-      );
+      const res = await axios.get(`${url}/api/history_data/export`, {
+        params: { from: fromDate, to: toDate, limit },
+        responseType: "blob",
+      });
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
       link.href = url;
