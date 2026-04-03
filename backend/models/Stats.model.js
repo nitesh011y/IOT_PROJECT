@@ -1,14 +1,23 @@
 const mongoose = require("mongoose");
 
-const statsSchema = new mongoose.Schema(
+const StatsSchema = new mongoose.Schema(
   {
-    obstacle: String,
-    water: String,
-    sos: Boolean,
-    userStatus: String,
-    deviceStatus: String,
+    obstacle: {
+      type: String,
+      enum: ["FAR", "MEDIUM", "NEAR"],
+      required: false,
+    },
+    water: {
+      type: String,
+      enum: ["DETECTED", "NOT_DETECTED"],
+      required: false,
+    },
+    sos: {
+      type: Boolean,
+      required: false,
+    },
   },
   { timestamps: true },
 );
 
-module.exports = mongoose.model("Stats", statsSchema);
+module.exports = mongoose.model("Stats", StatsSchema);

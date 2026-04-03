@@ -2,8 +2,6 @@ const mqtt = require("mqtt");
 const IoTEvent = require("../../models/IoTEvent");
 const Stats = require("../../models/Stats.model");
 
-// const { send_mail } = require("../../mail_services/mail");
-
 const { updateState, getState } = require("../../controler/monitor_dashboard");
 const { getIO } = require("../../socket");
 
@@ -47,8 +45,6 @@ client.on("message", async (topic, message) => {
       obstacle: data.obstacle,
       water: data.water,
       sos: data.sos,
-      userStatus: data.userStatus,
-      deviceStatus: data.deviceStatus,
     });
 
     //  Store event for history (NOT real-time)

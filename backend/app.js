@@ -30,7 +30,7 @@ app.use("/api/auth", require("./routes/Auth.js"));
 
 app.use("/api/history_data", require("./routes/history.js"));
 
-app.use("/api/analytics", require("./routes/analytics.js"));
+app.use("/api/stats", require("./routes/analytics.js"));
 
 // Start server
 server.listen(process.env.PORT || 3000, () => {
