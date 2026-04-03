@@ -96,6 +96,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-wrapper">
+      <Navbar/>
 
       <h1 className="dashboard-title">Smart Cane Monitoring Dashboard</h1>
 

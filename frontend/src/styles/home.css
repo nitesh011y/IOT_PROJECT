@@ -1,140 +1,167 @@
-/* FULL PAGE */
-.home-wrapper{
-  min-height:100vh;
-  background:#0b0f1a;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
+home.css
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+.home-container {
+  padding-bottom: 40px;
 }
 
 /* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 40px;
-  background:#111827;
-  border-bottom:1px solid #1f2937;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #020617;
+  padding: 15px 30px;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#c7ff3c;
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
-/* NAV LINKS */
-.nav-links{
-  display:flex;
-  gap:20px;
+.nav-links li {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
 }
 
-.nav-btn{
-  background:transparent;
-  border:none;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
+/* ✅ UPDATED COLOR */
+.nav-links li:hover {
+  opacity: 1;
+  color: #b6ff00;
 }
 
-.nav-btn:hover{
-  color:#c7ff3c;
+.nav-links .active {
+  color: #b6ff00;
+  opacity: 1;
 }
 
 /* USER */
-.user-section{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.user-section {
+  position: relative;
 }
 
-.user-icon{
-  background:#c7ff3c;
-  color:black;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
+.user-icon {
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.username{
-  font-size:14px;
+.user-icon:hover {
+  transform: scale(1.2);
 }
 
-/* CONTENT */
-.home-content{
-  max-width:1000px;
-  margin:auto;
-  padding:60px 20px;
-  text-align:center;
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  width: 180px;
 }
 
-.home-content h1{
-  font-size:40px;
-  margin-bottom:20px;
+/* HERO */
+.hero {
+  padding: 60px 30px;
+  background: linear-gradient(to right, #1e3a8a, #2563eb);
 }
 
-.home-content p{
-  color:#cbd5e1;
-  line-height:1.7;
-  margin-bottom:20px;
+.hero-text {
+  max-width: 600px;
 }
 
-/* FEATURES */
-.features{
-  margin-top:40px;
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
+.hero h1 {
+  font-size: 32px;
 }
 
-.feature-card{
-  background:#111827;
-  padding:25px;
-  width:280px;
-  border-radius:12px;
-  border:1px solid #1f2937;
-  transition:0.3s;
+.hero p {
+  opacity: 0.8;
 }
 
-.feature-card:hover{
-  transform:translateY(-5px);
-  border-color:#c7ff3c;
-}
-/* USER DROPDOWN */
-.user-section{
-  position:relative;
-  cursor:pointer;
+.hero-buttons {
+  margin-top: 20px;
 }
 
-.user-dropdown{
-  position:absolute;
-  right:0;
-  top:50px;
-  background:#111827;
-  border:1px solid #1f2937;
-  padding:15px;
-  border-radius:10px;
-  width:150px;
-  text-align:center;
+/* ✅ UPDATED BUTTON */
+.primary-btn {
+  background: #b6ff00;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #0f172a;
 }
 
-.user-dropdown p{
-  margin-bottom:10px;
-  font-size:14px;
+.primary-btn:hover {
+  transform: scale(1.05);
+  background: #a3e600;
 }
 
-.user-dropdown button{
-  width:100%;
-  padding:8px;
-  border:none;
-  background:#c7ff3c;
-  color:black;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
+.secondary-btn {
+  background: transparent;
+  border: 1px solid white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.secondary-btn:hover {
+  background: white;
+  color: #0f172a;
+  transform: scale(1.05);
+}
+
+/* SECTION */
+.section {
+  padding: 40px 30px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  min-width: 250px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
 }
