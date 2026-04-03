@@ -36,10 +36,6 @@ client.on("message", async (topic, message) => {
 
     let data = getState();
 
-    // if (data.sos) {
-    //   send_mail();
-    // }
-    // Emit to dashboard instantly
     getIO().emit("dashboard:update", {
       event,
       state: getState(),

@@ -276,30 +276,4 @@ router.get("/status-timeline", async (req, res) => {
   }
 });
 
-/// 6. Hourly heatmap data – SOS events only (day of week vs hour)
-// ----------------------------------------------------------------------
-router.get("/heatmap", async (req, res) => {
-  try {
-    const heatmap = await Stats.aggregate([
-      { $match: { sos: true } }, // Only SOS events
-      {
-        $addFields: {
-          dayOfWeek: { $dayOfWeek: "$createdAt" }, // 1=Sunday ... 7=Saturday
-          hour: { $hour: "$createdAt" },
-        },
-      },
-      {
-        $group: {
-          _id: { day: "$dayOfWeek", hour: "$hour" },
-          sosCount: { $sum: 1 }, // Count SOS presses
-        },
-      },
-      { $sort: { "_id.day": 1, "_id.hour": 1 } },
-    ]);
-    res.json(heatmap);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
 module.exports = router;
