@@ -13,10 +13,9 @@ function Dashboard() {
   const [logs, setLogs] = useState([]);
   const [showSOS, setShowSOS] = useState(false);
 
-  // Ref to track socket instance for cleanup
   const socketRef = useRef(null);
+  const prevSosRef = useRef(false); // track previous SOS state
 
-  // Map backend values to display & CSS classes
   const normalizeStatus = (status) => {
     if (!status) return "waiting";
     const s = status.toString().toLowerCase();
@@ -26,7 +25,6 @@ function Dashboard() {
     return "safe";
   };
 
-  // Add log function - professional format without emojis
   const addLog = useCallback((message) => {
     const time = new Date().toLocaleTimeString();
     const logMessage = `✓ ${time} - ${message}`;
@@ -36,9 +34,7 @@ function Dashboard() {
     });
   }, []);
 
-  // Socket.IO connection - runs only once on mount
   useEffect(() => {
-    // Create socket connection
     const socket = io(SOCKET_URL);
     socketRef.current = socket;
 
@@ -70,11 +66,14 @@ function Dashboard() {
       addLog(`Obstacle: ${obs}`);
       addLog(`Device: ${device}`);
 
-      if (state.sos === true && !showSOS) {
+      // ✅ SOS EDGE DETECTION: trigger only when sos changes from false → true
+      const currentSos = state.sos === true;
+      if (currentSos && !prevSosRef.current) {
         setShowSOS(true);
         addLog("SOS Button Pressed");
         setTimeout(() => setShowSOS(false), 5000);
       }
+      prevSosRef.current = currentSos;
 
       if (event && event.payload) {
         const payloadStr =
@@ -85,22 +84,19 @@ function Dashboard() {
       }
     });
 
-    // Cleanup on component unmount
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current = null;
       }
     };
-  }, [addLog]); // Only addLog as dependency (stable), showSOS removed
+  }, [addLog]);
 
   return (
     <div className="dashboard-wrapper">
       <Navbar />
-
       <h1 className="dashboard-title">Smart Cane Monitoring Dashboard</h1>
 
-      {/* TOP CARDS */}
       <div className="card-grid">
         <div className="card">
           <h3>User Status</h3>
@@ -108,19 +104,16 @@ function Dashboard() {
             {userStatus.toUpperCase()}
           </div>
         </div>
-
         <div className="card">
           <h3>Water Level</h3>
           <p className={`value ${water === "DETECTED" ? "danger" : "safe"}`}>
             {water.toUpperCase()}
           </p>
         </div>
-
         <div className="card">
           <h3>Distance to Obstacle</h3>
           <p className="value">{obstacle}</p>
         </div>
-
         <div className="card">
           <h3>Device Status</h3>
           <p className={`device ${deviceStatus.toLowerCase()}`}>
@@ -129,7 +122,6 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* BOTTOM CARDS */}
       <div className="bottom-grid">
         <div className="card log-card">
           <h3>Live Log Feed</h3>

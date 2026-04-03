@@ -2,7 +2,7 @@
 .dashboard-wrapper {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 24px 32px;
+  padding: 0px 32px;
   font-family:
     "Inter",
     -apple-system,
@@ -17,6 +17,7 @@
 .dashboard-title {
   font-size: 28px;
   font-weight: 600;
+  margin-top: 30px;
   margin-bottom: 32px;
   color: #7291b3;
   letter-spacing: -0.3px;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import "../styles/home.css";
@@ -6,21 +6,31 @@ import "../styles/notification.css";
 import Navbar from "./Navbar";
 
 const SOCKET_URL = "http://localhost:5000";
+const SOS_COOLDOWN_MS = 10000; // 10 seconds – adjust as needed
 
 const Home = () => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const lastSOSTimeRef = useRef(0); // track last SOS notification time
 
-  // Add SOS notification (no popup)
+  // Add SOS notification (with cooldown)
   const addSOSNotification = useCallback(() => {
+    const now = Date.now();
+    // If last SOS was within cooldown period, ignore this duplicate
+    if (now - lastSOSTimeRef.current < SOS_COOLDOWN_MS) {
+      console.log("SOS cooldown active, ignoring duplicate");
+      return;
+    }
+    lastSOSTimeRef.current = now;
+
     const newAlert = {
-      id: Date.now(),
+      id: now,
       message: "🚨 SOS Triggered! User needs help immediately.",
       time: new Date().toLocaleTimeString(),
     };
     setNotifications((prev) => [newAlert, ...prev]);
-    // Auto‑open sidebar when new SOS arrives (optional)
+    // Auto‑open sidebar when new SOS arrives
     setShowNotifications(true);
   }, []);
 
@@ -43,11 +53,6 @@ const Home = () => {
     };
   }, [addSOSNotification]);
 
-  // Clear single notification
-  const clearNotification = (id) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
-  };
-
   // Clear all notifications
   const clearAll = () => {
     setNotifications([]);
@@ -57,7 +62,7 @@ const Home = () => {
     <div className="home-container">
       <Navbar />
 
-      {/* 🔔 Bell icon – hidden when sidebar open */}
+      {/* Bell icon – hidden when sidebar open */}
       {!showNotifications && (
         <div
           className="notification-bell"
@@ -70,7 +75,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* Notification Sidebar – only SOS messages */}
+      {/* Notification Sidebar */}
       <div
         className={`notification-sidebar ${showNotifications ? "open" : ""}`}
       >
@@ -98,19 +103,13 @@ const Home = () => {
               <div key={note.id} className="notification-card">
                 <p>{note.message}</p>
                 <span>{note.time}</span>
-                <button
-                  className="clear-one"
-                  onClick={() => clearNotification(note.id)}
-                >
-                  ✕
-                </button>
               </div>
             ))
           )}
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero, Features, About, Footer – unchanged */}
       <div className="hero">
         <div className="hero-text">
           <h1>Empowering Independent Navigation</h1>
@@ -129,7 +128,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Core Features */}
       <div className="section">
         <h2 className="section-title">Core Features</h2>
         <div className="cards-container">
@@ -157,7 +155,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Section */}
       <div className="section">
         <h2 className="section-title">About the Device</h2>
         <div className="info-grid">
@@ -192,7 +189,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="footer">
         <p>© 2026 Smart Cane Project | Built with IoT & React</p>
       </div>
